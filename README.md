@@ -1,8 +1,7 @@
-# Andes Retail Group — Commercial Performance \& Strategic Optimization (2024–2025)
-
+# Andes Retail Group — Commercial Performance & Strategic Optimization (2024–2025)
 > Executive commercial performance dashboard for a multi-country retail operation in the Andean region (Chile, Peru, and Colombia), built in Tableau and replicated in Power BI as an Analytics Engineering exercise.
 
-\---
+---
 
 ## Executive Summary
 
@@ -12,7 +11,7 @@ This project transforms that transactional dataset into a system of KPIs, SCQA s
 
 **Headline finding:** the period showed a **12.1% contraction in revenue** and **11.4% in units sold**, critically concentrated in **Peru's Central Region** (-19%).
 
-\---
+---
 
 ## Business Problem
 
@@ -22,182 +21,174 @@ This project transforms that transactional dataset into a system of KPIs, SCQA s
 
 **Business impact:** without this visibility, executive leadership cannot prioritize where to intervene (which country, which category, which customer segment) nor anticipate demand valleys for supply chain planning.
 
-\---
+---
 
 ## Project Objectives
 
 ### General Objective
-
 Build an executive dashboard that translates Andes Retail Group's transactional behavior into clear, actionable visual information for commercial decision-making.
 
 ### Specific Objectives
+- Connect, validate, and prepare the 2024–2025 transactional dataset for analysis.
+- Design two views (Overview and Detail) applying visual hierarchy and cognitive load reduction principles.
+- Build KPIs and advanced indicators (YoY, AOV, ARPU, ASP, UPT, Coefficient of Variation, Seasonality Index) that answer concrete business questions.
+- Implement filters and interactions enabling dynamic exploration by year, country, and region.
+- Build a strategic narrative using the **SCQA** model and a Slack-style executive message.
 
-* Connect, validate, and prepare the 2024–2025 transactional dataset for analysis.
-* Design two views (Overview and Detail) applying visual hierarchy and cognitive load reduction principles.
-* Build KPIs and advanced indicators (YoY, AOV, ARPU, ASP, UPT, Coefficient of Variation, Seasonality Index) that answer concrete business questions.
-* Implement filters and interactions enabling dynamic exploration by year, country, and region.
-* Build a strategic narrative using the **SCQA** model and a Slack-style executive message.
-
-\---
+---
 
 ## Dataset
 
-|Attribute|Description|
-|-|-|
-|Source|Andes Retail Group internal transactional data|
-|Records|Individual orders (1 row = 1 order)|
-|Time Period|2024 – 2025|
-|Granularity|Transactional (order level)|
-|Geography|Peru, Chile, Colombia (Region: North / Central / South)|
-|Categories|Electronics, Apparel, Sports, Home|
+| Attribute | Description |
+|---|---|
+| Source | Andes Retail Group internal transactional data |
+| Records | Individual orders (1 row = 1 order) |
+| Time Period | 2024 – 2025 |
+| Granularity | Transactional (order level) |
+| Geography | Peru, Chile, Colombia (Region: North / Central / South) |
+| Categories | Electronics, Apparel, Sports, Home |
 
-|Column|Data Type|Description|
-|-|-|-|
-|`ID\_Pedido`|Integer|Unique order identifier|
-|`Fecha\_Pedido`|Date|Date the sale was made|
-|`Estación`|Categorical|Southern Hemisphere season (Summer, Fall, Winter, Spring)|
-|`ID\_Cliente`|Categorical|Unique customer identifier|
-|`Segmento\_Cliente`|Categorical|Customer type by commercial value (Economic, Standard, Premium)|
-|`Región`|Categorical|Geographic region within the country (North, Central, South)|
-|`País`|Categorical|Country where the sale occurred|
-|`Categoría\_Producto`|Categorical|Product type sold|
-|`Unidades\_Vendidas`|Integer|Number of units sold|
-|`Precio\_Unitario`|Decimal|Unit price|
-|`Ingresos`|Decimal|Total revenue (price × units)|
-|`Costo`|Decimal|Cost associated with the sale|
+| Column | Data Type | Description |
+|---|---|---|
+| `ID_Pedido` | Integer | Unique order identifier |
+| `Fecha_Pedido` | Date | Date the sale was made |
+| `Estación` | Categorical | Southern Hemisphere season (Summer, Fall, Winter, Spring) |
+| `ID_Cliente` | Categorical | Unique customer identifier |
+| `Segmento_Cliente` | Categorical | Customer type by commercial value (Economic, Standard, Premium) |
+| `Región` | Categorical | Geographic region within the country (North, Central, South) |
+| `País` | Categorical | Country where the sale occurred |
+| `Categoría_Producto` | Categorical | Product type sold |
+| `Unidades_Vendidas` | Integer | Number of units sold |
+| `Precio_Unitario` | Decimal | Unit price |
+| `Ingresos` | Decimal | Total revenue (price × units) |
+| `Costo` | Decimal | Cost associated with the sale |
 
 > Column names are kept in their original Spanish form to match the source dataset exactly, ensuring direct traceability between this documentation and the workbook fields.
 
-\---
+---
 
 ## Tech Stack
+- **Visualization:** Tableau Public, Power BI Desktop
+- **Data preparation:** Power Query (M Language), Tableau Data Prep
+- **Analytical computation:** Tableau Calculated Fields / LOD Expressions, Power BI DAX
+- **Conceptual development:** Jupyter Notebook (Python)
+- **Version control:** Git, GitHub
 
-* **Visualization:** Tableau Public, Power BI Desktop
-* **Data preparation:** Power Query (M Language), Tableau Data Prep
-* **Analytical computation:** Tableau Calculated Fields / LOD Expressions, Power BI DAX
-* **Conceptual development:** Jupyter Notebook (Python)
-* **Version control:** Git, GitHub
-
-\---
+---
 
 ## Repository Structure
-
 ```text
 andes-retail-commercial-performance/
 │
 ├── data/
 │   └── raw/
-│       └── Andes\_Retail\_Group\_2024\_2025.xlsx
+│       └── Andes_Retail_Group_2024_2025.xlsx
 │
 ├── notebooks/
-│   └── 01\_business\_analysis\_and\_dashboard\_design.ipynb
+│   └── 01_business_analysis_and_dashboard_design.ipynb
 │
 ├── dashboards/
 │   ├── tableau/
-│   │   └── commercial\_performance\_dashboard.twb
+│   │   └── commercial_performance_dashboard.twb
 │   │
 │   └── power-bi/
-│       └── commercial\_performance\_dashboard.pbix
+│       └── commercial_performance_dashboard.pbix
 │
 ├── images/
 │   ├── thumbnail.png
-│   ├── tableau\_overview.png
-│   ├── tableau\_detail.png
-│   ├── power\_bi\_overview.png
-│   └── power\_bi\_detail.png
+│   ├── tableau_overview.png
+│   ├── tableau_detail.png
+│   ├── power_bi_overview.png
+│   └── power_bi_detail.png
 │
 ├── README.md
 └── .gitignore
 ```
 
-> This repository does not include a `LICENSE` file or `requirements.txt`. The licensing decision is declared as a note in this README (see \*Usage Notice\*), and the notebook was used solely as a conceptual development space in Jupyter, with no dependencies to pin in a requirements file.
+> This repository does not include a `LICENSE` file or `requirements.txt`. The licensing decision is declared as a note in this README (see *Usage Notice*), and the notebook was used solely as a conceptual development space in Jupyter, with no dependencies to pin in a requirements file.
 
-\---
+---
 
 ## Project Workflow
-
 ```text
 Business Understanding → Data Understanding → Data Preparation
 → Analysis → Dashboard Development → Business Insights → Recommendations
 ```
 
-|Step|Action|Business Outcome|
-|-|-|-|
-|1. Connection and exploration|Import the dataset, review data types and key columns|Initial understanding of the business|
-|2. Data preparation|Validate types, create `Nivel\_Venta`, normalize dates and seasonality|Clean dataset ready for analysis|
-|3. Design and planning|Define questions per view, KPIs, and visual hierarchy|Clear, professional dashboard plan|
-|4. Visualizations|Build the Overview View and the Detail View|Executive vision + in-depth analysis|
-|5. Filters and interactions|Year, country, and region as cross-filters|Dynamic business exploration|
-|6. SCQA narrative|Build the dashboard story and executive message|Clear, actionable strategic insight|
+| Step | Action | Business Outcome |
+|---|---|---|
+| 1. Connection and exploration | Import the dataset, review data types and key columns | Initial understanding of the business |
+| 2. Data preparation | Validate types, create `Nivel_Venta`, normalize dates and seasonality | Clean dataset ready for analysis |
+| 3. Design and planning | Define questions per view, KPIs, and visual hierarchy | Clear, professional dashboard plan |
+| 4. Visualizations | Build the Overview View and the Detail View | Executive vision + in-depth analysis |
+| 5. Filters and interactions | Year, country, and region as cross-filters | Dynamic business exploration |
+| 6. SCQA narrative | Build the dashboard story and executive message | Clear, actionable strategic insight |
 
-\---
+---
 
 ## Data Preparation
 
-* Converted `Fecha\_Pedido` to Latin American Spanish date format.
-* Corrected data types on numeric columns (`Ingresos`, `Costo`, `Unidades\_Vendidas`, `Precio\_Unitario`).
-* Created a conditional column `Nivel\_Venta`:
+- Converted `Fecha_Pedido` to Latin American Spanish date format.
+- Corrected data types on numeric columns (`Ingresos`, `Costo`, `Unidades_Vendidas`, `Precio_Unitario`).
+- Created a conditional column `Nivel_Venta`:
+  - `Ingresos >= 1000` → **"High Sale"**
+  - Otherwise → **"Low Sale"**
+- **Seasonality mapping:** the `Estación` field follows a fixed Southern Hemisphere calendar applied uniformly to Chile, Peru, and Colombia: Summer (Jan, Feb), Fall (Mar, Apr, May), Winter (Jun, Jul, Aug), Spring (Sep, Oct, Nov), and Summer (Dec). December is mapped back to Summer rather than starting a new "Winter" block, since the season spans the calendar year-end and must read as one continuous period when ordered chronologically.
+- Quality validation through Column Profile / Column Quality checks before starting the modeling phase.
 
-  * `Ingresos >= 1000` → **"High Sale"**
-  * Otherwise → **"Low Sale"**
-* **Seasonality mapping:** the `Estación` field follows a fixed Southern Hemisphere calendar applied uniformly to Chile, Peru, and Colombia: Summer (Jan, Feb), Fall (Mar, Apr, May), Winter (Jun, Jul, Aug), Spring (Sep, Oct, Nov), and Summer (Dec). December is mapped back to Summer rather than starting a new "Winter" block, since the season spans the calendar year-end and must read as one continuous period when ordered chronologically.
-* Quality validation through Column Profile / Column Quality checks before starting the modeling phase.
-
-\---
+---
 
 ## Data Modeling (Power BI replication)
 
 As an Analytics Engineering exercise, the project was replicated in Power BI with a single fact table plus one independent date dimension:
 
-* **andes\_retail\_group\_2024\_2025** — the transactional fact table, containing Revenue, Cost, Units, along with geography, product, and customer attributes embedded directly in the same table (no separate `Dim\_Geografía`, `Dim\_Productos`, or `Dim\_Clientes` were created for this iteration).
-* **Dim\_Calendario** — the only dedicated dimension table built for this model: an independent date table (Power BI's automatic date hierarchy was deliberately not used), with `Year`, `Month`, `Quarter` columns and a **Season** column chronologically ordered via `Sort by Column`.
+- **andes_retail_group_2024_2025** — the transactional fact table, containing Revenue, Cost, Units, along with geography, product, and customer attributes embedded directly in the same table (no separate `Dim_Geografía`, `Dim_Productos`, or `Dim_Clientes` were created for this iteration).
+- **Dim_Calendario** — the only dedicated dimension table built for this model: an independent date table (Power BI's automatic date hierarchy was deliberately not used), with `Year`, `Month`, `Quarter` columns and a **Season** column chronologically ordered via `Sort by Column`.
 
 This is a simplified, single-fact-table model rather than a full Star Schema. It was sufficient for this project's scope, but a future iteration would split geography, product, and customer attributes into their own dimension tables to reduce redundancy and improve filter performance as the dataset grows.
 
 This architecture enabled the implementation of Time Intelligence functions (`TOTALYTD`, `SAMEPERIODLASTYEAR`) and level-of-detail expressions (LOD in Tableau / `CALCULATE` + `ALL` in DAX) to build year-over-year comparable metrics without the sheet's filters "destroying" the historical context.
 
-\---
+---
 
-## KPIs \& Business Metrics
+## KPIs & Business Metrics
 
-|Indicator|Acronym|What it answers|
-|-|-|-|
-|Year-over-Year Growth|YoY|Is the business growing or contracting versus last year?|
-|Average Order Value|AOV|Average revenue per order|
-|Average Revenue Per User|ARPU|Average value generated per unique customer|
-|Average Selling Price|ASP|Average selling price per unit|
-|Units Per Transaction|UPT|Average units per order|
-|Gross Margin|GM|Direct profitability after deducting costs|
-|Cost Efficiency Ratio|REC|How many cents it costs to capture each dollar of revenue|
-|Coefficient of Variation|CV|Level of dependency/inequality across regions or countries|
-|Seasonality Index|SI|Strength of a season relative to the historical average (commercial peaks and valleys)|
+| Indicator | Acronym | What it answers |
+|---|---|---|
+| Year-over-Year Growth | YoY | Is the business growing or contracting versus last year? |
+| Average Order Value | AOV | Average revenue per order |
+| Average Revenue Per User | ARPU | Average value generated per unique customer |
+| Average Selling Price | ASP | Average selling price per unit |
+| Units Per Transaction | UPT | Average units per order |
+| Gross Margin | GM | Direct profitability after deducting costs |
+| Cost Efficiency Ratio | REC | How many cents it costs to capture each dollar of revenue |
+| Coefficient of Variation | CV | Level of dependency/inequality across regions or countries |
+| Seasonality Index | SI | Strength of a season relative to the historical average (commercial peaks and valleys) |
 
-> \*\*CV\*\* and \*\*SI\*\* are calculated over the full historical period (2024–2025) rather than the current year, to prevent a single year's anomaly from distorting the read on structural risk or true business seasonality.
+> **CV** and **SI** are calculated over the full historical period (2024–2025) rather than the current year, to prevent a single year's anomaly from distorting the read on structural risk or true business seasonality.
 
-\---
+---
 
 ## Dashboard Structure
 
 ### 🖥️ Overview View (Executive)
-
 **Question it answers:** How is the business doing overall?
 
-* KPIs: Total Revenue (YoY), Coefficient of Variation by country, YoY of revenue/costs/units, YoY of AOV/ARPU/ASP/UPT.
-* Line chart: revenue evolution over time, with min/max markers and a Seasonality Index alert.
-* Horizontal bar chart: revenue and YoY by product category, with visual alerts for Cost Efficiency Ratio (>65%) and Profit Margin (<35%).
-* Scatter plot: revenue vs. YoY revenue vs. profit margin, segmented by customer type.
-* Filters: Year, Country.
+- KPIs: Total Revenue (YoY), Coefficient of Variation by country, YoY of revenue/costs/units, YoY of AOV/ARPU/ASP/UPT.
+- Line chart: revenue evolution over time, with min/max markers and a Seasonality Index alert.
+- Horizontal bar chart: revenue and YoY by product category, with visual alerts for Cost Efficiency Ratio (>65%) and Profit Margin (<35%).
+- Scatter plot: revenue vs. YoY revenue vs. profit margin, segmented by customer type.
+- Filters: Year, Country.
 
 ### 🔎 Detail View (Analysis)
-
 **Question it answers:** Where are the differences, patterns, or opportunities?
 
-* Breakdown by Region within each country.
-* Seasonal comparison against units sold and `Nivel\_Venta` to detect commercial valleys.
-* Geographic performance table with conditional formatting.
-* Filters: Country, Region.
+- Breakdown by Region within each country.
+- Seasonal comparison against units sold and `Nivel_Venta` to detect commercial valleys.
+- Geographic performance table with conditional formatting.
+- Filters: Country, Region.
 
-\---
+---
 
 ## Business Storytelling (SCQA Model)
 
@@ -211,7 +202,7 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 
 ### 📊 Executive Message (Slack style)
 
-> \*\*Commercial performance update\*\*
+> **Commercial performance update**
 >
 > In the 2024–2025 commercial performance review, we observed a 12.1% contraction in revenue and 11.4% in units sold.
 >
@@ -221,7 +212,7 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 >
 > We recommend reviewing whether the campaigns and promotions applied in that region were ineffective.
 
-\---
+---
 
 ## Key Insights
 
@@ -231,60 +222,55 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 
 ## Business Recommendations
 
-* Audit the campaigns and promotions applied in Peru's Central Region during the period of greatest decline.
-* Reallocate commercial budget toward regions with a lower relative Coefficient of Variation to reduce single-market dependency.
-* Review the cost structure in categories with a Cost Efficiency Ratio above 65%.
+- Audit the campaigns and promotions applied in Peru's Central Region during the period of greatest decline.
+- Reallocate commercial budget toward regions with a lower relative Coefficient of Variation to reduce single-market dependency.
+- Review the cost structure in categories with a Cost Efficiency Ratio above 65%.
 
-\---
+---
 
 ## How to Reproduce
 
 1. Clone the repository.
-2. Open `notebooks/01\_business\_analysis\_and\_dashboard\_design.ipynb` to review the conceptual development and dashboard design.
-3. Load the dataset from `data/raw/Andes\_Retail\_Group\_2024\_2025.xlsx`.
-4. Open `dashboards/tableau/commercial\_performance\_dashboard.twb` **or** `dashboards/power-bi/commercial\_performance\_dashboard.pbix`.
+2. Open `notebooks/01_business_analysis_and_dashboard_design.ipynb` to review the conceptual development and dashboard design.
+3. Load the dataset from `data/raw/Andes_Retail_Group_2024_2025.xlsx`.
+4. Open `dashboards/tableau/commercial_performance_dashboard.twb` **or** `dashboards/power-bi/commercial_performance_dashboard.pbix`.
 5. Refresh the data source if needed and reload the model.
 
-\---
+---
 
 ## Dashboard Preview
 
 ### Tableau
-
-!\[Tableau Overview](images/tableau\_overview.png)
-!\[Tableau Detail](images/tableau\_detail.png)
+![Tableau Overview](images/tableau_overview.png)
+![Tableau Detail](images/tableau_detail.png)
 
 ### Power BI
+![Power BI Overview](images/power_bi_overview.png)
+![Power BI Detail](images/power_bi_detail.png)
 
-!\[Power BI Overview](images/power\_bi\_overview.png)
-!\[Power BI Detail](images/power\_bi\_detail.png)
-
-\---
+---
 
 ## Live Dashboard
 
 🔗 **Tableau Public:** [Andes Retail Group — Commercial Performance Dashboard](https://public.tableau.com/app/profile/jacobo.galindo.ortiz/viz/Andes_Retail_Group_2024_2025/Porpas?publish=yes)
 
-> The Power BI dashboard is included in this repository as a technical replication exercise (single fact table + Dim\_Calendario, DAX, and Time Intelligence) and is not published as a standalone deliverable, since the project calls for a single final dashboard.
+> The Power BI dashboard is included in this repository as a technical replication exercise (single fact table + Dim_Calendario, DAX, and Time Intelligence) and is not published as a standalone deliverable, since the project calls for a single final dashboard.
 
-\---
+---
 
 ## Future Improvements
-
-* Connect filters across tabs and seasonal charts for cross-filtering.
-* Incorporate demand forecasting based on the historical Seasonality Index.
-* Evaluate migrating the Power BI model to an automated pipeline with optimized Power Query (early row filtering before text transformations).
+- Connect filters across tabs and seasonal charts for cross-filtering.
+- Incorporate demand forecasting based on the historical Seasonality Index.
+- Evaluate migrating the Power BI model to an automated pipeline with optimized Power Query (early row filtering before text transformations).
 
 ## Lessons Learned
+- **Technical:** the difference between row-level filters and level-of-detail expressions (LOD / `CALCULATE` + `ALL`) is critical for building comparative metrics (YoY, CV, SI) that don't break when the filter context changes.
+- **Business:** the same calendar logic can be misread as a data quality issue if it isn't documented — splitting Summer across the year-end boundary is a deliberate modeling choice, not an inconsistency, and it needs to be explained clearly so a reviewer doesn't mistake it for an error.
+- **Professional:** cross-validating results across tools (Excel, Tableau, Power BI) before presenting a KPI to leadership is a quality-control practice, not an optional step.
 
-* **Technical:** the difference between row-level filters and level-of-detail expressions (LOD / `CALCULATE` + `ALL`) is critical for building comparative metrics (YoY, CV, SI) that don't break when the filter context changes.
-* **Business:** the same calendar logic can be misread as a data quality issue if it isn't documented — splitting Summer across the year-end boundary is a deliberate modeling choice, not an inconsistency, and it needs to be explained clearly so a reviewer doesn't mistake it for an error.
-* **Professional:** cross-validating results across tools (Excel, Tableau, Power BI) before presenting a KPI to leadership is a quality-control practice, not an optional step.
-
-\---
+---
 
 ## Author
-
 **Jacobo Galindo Ortiz**
 Data Analyst Portfolio
 [LinkedIn](#) · [GitHub](#)
@@ -296,4 +282,3 @@ This repository is provided for portfolio and educational review purposes.
 The project may be viewed to evaluate the analytical approach, methodology, and implementation. It is not intended for redistribution, commercial use, or incorporation into other projects without prior written permission from the author.
 
 If you would like to reference or discuss any part of this work, please contact the author.
-
