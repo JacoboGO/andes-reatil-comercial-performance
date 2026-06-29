@@ -53,16 +53,16 @@ Build an executive dashboard that translates Andes Retail Group's transactional 
 
 |Column|Data Type|Description|
 |-|-|-|
-|`ID\\\_Pedido`|Integer|Unique order identifier|
-|`Fecha\\\_Pedido`|Date|Date the sale was made|
+|`ID\_Pedido`|Integer|Unique order identifier|
+|`Fecha\_Pedido`|Date|Date the sale was made|
 |`Estación`|Categorical|Southern Hemisphere season (Summer, Fall, Winter, Spring)|
-|`ID\\\_Cliente`|Categorical|Unique customer identifier|
-|`Segmento\\\_Cliente`|Categorical|Customer type by commercial value (Economic, Standard, Premium)|
+|`ID\_Cliente`|Categorical|Unique customer identifier|
+|`Segmento\_Cliente`|Categorical|Customer type by commercial value (Economic, Standard, Premium)|
 |`Región`|Categorical|Geographic region within the country (North, Central, South)|
 |`País`|Categorical|Country where the sale occurred|
-|`Categoría\\\_Producto`|Categorical|Product type sold|
-|`Unidades\\\_Vendidas`|Integer|Number of units sold|
-|`Precio\\\_Unitario`|Decimal|Unit price|
+|`Categoría\_Producto`|Categorical|Product type sold|
+|`Unidades\_Vendidas`|Integer|Number of units sold|
+|`Precio\_Unitario`|Decimal|Unit price|
 |`Ingresos`|Decimal|Total revenue (price × units)|
 |`Costo`|Decimal|Cost associated with the sale|
 
@@ -87,30 +87,30 @@ andes-retail-commercial-performance/
 │
 ├── data/
 │   └── raw/
-│       └── Andes\\\_Retail\\\_Group\\\_2024\\\_2025.xlsx
+│       └── Andes\_Retail\_Group\_2024\_2025.xlsx
 │
 ├── notebooks/
-│   └── 01\\\_business\\\_analysis\\\_and\\\_dashboard\\\_design.ipynb
+│   └── 01\_business\_analysis\_and\_dashboard\_design.ipynb
 │
 ├── dashboards/
 │   ├── tableau/
-│   │   └── commercial\\\_performance\\\_dashboard.twb
+│   │   └── commercial\_performance\_dashboard.twb
 │   │
 │   └── power-bi/
-│       └── commercial\\\_performance\\\_dashboard.pbix
+│       └── commercial\_performance\_dashboard.pbix
 │
 ├── images/
 │   ├── thumbnail.png
-│   ├── tableau\\\_overview.png
-│   ├── tableau\\\_detail.png
-│   ├── powerbi\\\_overview.png
-│   └── powerbi\\\_detail.png
+│   ├── tableau\_overview.png
+│   ├── tableau\_detail.png
+│   ├── power\_bi\_overview.png
+│   └── power\_bi\_detail.png
 │
 ├── README.md
 └── .gitignore
 ```
 
-> This repository does not include a `LICENSE` file or `requirements.txt`. The licensing decision is declared as a note in this README (see \\\*Usage Notice\\\*), and the notebook was used solely as a conceptual development space in Jupyter, with no dependencies to pin in a requirements file.
+> This repository does not include a `LICENSE` file or `requirements.txt`. The licensing decision is declared as a note in this README (see \*Usage Notice\*), and the notebook was used solely as a conceptual development space in Jupyter, with no dependencies to pin in a requirements file.
 
 \---
 
@@ -124,7 +124,7 @@ Business Understanding → Data Understanding → Data Preparation
 |Step|Action|Business Outcome|
 |-|-|-|
 |1. Connection and exploration|Import the dataset, review data types and key columns|Initial understanding of the business|
-|2. Data preparation|Validate types, create `Nivel\\\_Venta`, normalize dates and seasonality|Clean dataset ready for analysis|
+|2. Data preparation|Validate types, create `Nivel\_Venta`, normalize dates and seasonality|Clean dataset ready for analysis|
 |3. Design and planning|Define questions per view, KPIs, and visual hierarchy|Clear, professional dashboard plan|
 |4. Visualizations|Build the Overview View and the Detail View|Executive vision + in-depth analysis|
 |5. Filters and interactions|Year, country, and region as cross-filters|Dynamic business exploration|
@@ -134,9 +134,9 @@ Business Understanding → Data Understanding → Data Preparation
 
 ## Data Preparation
 
-* Converted `Fecha\\\_Pedido` to Latin American Spanish date format.
-* Corrected data types on numeric columns (`Ingresos`, `Costo`, `Unidades\\\_Vendidas`, `Precio\\\_Unitario`).
-* Created a conditional column `Nivel\\\_Venta`:
+* Converted `Fecha\_Pedido` to Latin American Spanish date format.
+* Corrected data types on numeric columns (`Ingresos`, `Costo`, `Unidades\_Vendidas`, `Precio\_Unitario`).
+* Created a conditional column `Nivel\_Venta`:
 
   * `Ingresos >= 1000` → **"High Sale"**
   * Otherwise → **"Low Sale"**
@@ -149,7 +149,7 @@ Business Understanding → Data Understanding → Data Preparation
 
 As an Analytics Engineering exercise, the project was replicated in Power BI with a single fact table plus one independent date dimension:
 
-* **andes\_retail\_group\_2024\_2025** — the transactional fact table, containing Revenue, Cost, Units, along with geography, product, and customer attributes embedded directly in the same table (no separate `Dim\\\_Geografía`, `Dim\\\_Productos`, or `Dim\\\_Clientes` were created for this iteration).
+* **andes\_retail\_group\_2024\_2025** — the transactional fact table, containing Revenue, Cost, Units, along with geography, product, and customer attributes embedded directly in the same table (no separate `Dim\_Geografía`, `Dim\_Productos`, or `Dim\_Clientes` were created for this iteration).
 * **Dim\_Calendario** — the only dedicated dimension table built for this model: an independent date table (Power BI's automatic date hierarchy was deliberately not used), with `Year`, `Month`, `Quarter` columns and a **Season** column chronologically ordered via `Sort by Column`.
 
 This is a simplified, single-fact-table model rather than a full Star Schema. It was sufficient for this project's scope, but a future iteration would split geography, product, and customer attributes into their own dimension tables to reduce redundancy and improve filter performance as the dataset grows.
@@ -172,7 +172,7 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 |Coefficient of Variation|CV|Level of dependency/inequality across regions or countries|
 |Seasonality Index|SI|Strength of a season relative to the historical average (commercial peaks and valleys)|
 
-> \\\*\\\*CV\\\*\\\* and \\\*\\\*SI\\\*\\\* are calculated over the full historical period (2024–2025) rather than the current year, to prevent a single year's anomaly from distorting the read on structural risk or true business seasonality.
+> \*\*CV\*\* and \*\*SI\*\* are calculated over the full historical period (2024–2025) rather than the current year, to prevent a single year's anomaly from distorting the read on structural risk or true business seasonality.
 
 \---
 
@@ -193,7 +193,7 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 **Question it answers:** Where are the differences, patterns, or opportunities?
 
 * Breakdown by Region within each country.
-* Seasonal comparison against units sold and `Nivel\\\_Venta` to detect commercial valleys.
+* Seasonal comparison against units sold and `Nivel\_Venta` to detect commercial valleys.
 * Geographic performance table with conditional formatting.
 * Filters: Country, Region.
 
@@ -211,7 +211,7 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 
 ### 📊 Executive Message (Slack style)
 
-> \\\*\\\*Commercial performance update\\\*\\\*
+> \*\*Commercial performance update\*\*
 >
 > In the 2024–2025 commercial performance review, we observed a 12.1% contraction in revenue and 11.4% in units sold.
 >
@@ -240,9 +240,9 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 ## How to Reproduce
 
 1. Clone the repository.
-2. Open `notebooks/01\\\_business\\\_analysis\\\_and\\\_dashboard\\\_design.ipynb` to review the conceptual development and dashboard design.
-3. Load the dataset from `data/raw/Andes\\\_Retail\\\_Group\\\_2024\\\_2025.xlsx`.
-4. Open `dashboards/tableau/commercial\\\_performance\\\_dashboard.twb` **or** `dashboards/power-bi/commercial\\\_performance\\\_dashboard.pbix`.
+2. Open `notebooks/01\_business\_analysis\_and\_dashboard\_design.ipynb` to review the conceptual development and dashboard design.
+3. Load the dataset from `data/raw/Andes\_Retail\_Group\_2024\_2025.xlsx`.
+4. Open `dashboards/tableau/commercial\_performance\_dashboard.twb` **or** `dashboards/power-bi/commercial\_performance\_dashboard.pbix`.
 5. Refresh the data source if needed and reload the model.
 
 \---
@@ -265,7 +265,7 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 
 🔗 **Tableau Public:** [Andes Retail Group — Commercial Performance Dashboard](https://public.tableau.com/app/profile/jacobo.galindo.ortiz/viz/Andes_Retail_Group_2024_2025/Porpas?publish=yes)
 
-> The Power BI dashboard is included in this repository as a technical replication exercise (single fact table + Dim\\\_Calendario, DAX, and Time Intelligence) and is not published as a standalone deliverable, since the project calls for a single final dashboard.
+> The Power BI dashboard is included in this repository as a technical replication exercise (single fact table + Dim\_Calendario, DAX, and Time Intelligence) and is not published as a standalone deliverable, since the project calls for a single final dashboard.
 
 \---
 
@@ -287,7 +287,7 @@ This architecture enabled the implementation of Time Intelligence functions (`TO
 
 **Jacobo Galindo Ortiz**
 Data Analyst Portfolio
-[www.linkedin.com/in/jacobo-galindo-ortiz](#) · [https://github.com/JacoboGO](#) · [https://public.tableau.com/app/profile/jacobo.galindo.ortiz/vizzes](#)
+[LinkedIn](#) · [GitHub](#)
 
 ## Usage Notice
 
